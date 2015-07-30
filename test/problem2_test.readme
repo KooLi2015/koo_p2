@@ -1,0 +1,40 @@
+This is the testing document for project "problem2".
+Before doing the test, please ensure Python 3 and eventlet are properly installed on your test machines.
+And then deploy "problem2.py" at the server side, and "test/problem2_client.py" to the client side. 
+
+To simplify the testing steps, we run both the server and client program on the same machine(but it should be easily extended for the scenarios that have 2+ test machines):
+I.  launch the server by running "problem2.py" with the following arguments:
+    >python problem2.py 127.0.0.1 7888 100 10000 0.05
+    for the detailed meaning of each argument, you may run command >python problem2.py -h or >python problem2.py --help.
+    
+II. launch the client by running "problem2_client.py" with the following arguments:
+    >python problem2_client.py 127.0.0.1 7888
+    when you see the hint like "Please enter the number for requesting Fibonacci sequence from server:", then please do three tests as below: 
+    1) input a positive number like 10, and then press enter key, what should be shown on screen is like below:
+       Please enter the number for requesting Fibonacci sequence from server: 10
+       Response from server:
+       0 1 1 2 3 5 8 13 21 34
+    2) input 0 or an negative number like -3, and then press enter key, what should be shown on screen is like below:
+       Please enter the number for requesting Fibonacci sequence from server: -3
+       Response from server:
+       The value for Fibonacci Sequence should greater than 0!
+    3) input a positive number that greater than the second arguments of "problem2.py" which is the length of cached Fibonacci sequence,
+       the it will use generator to return Fibonacci sequence in the internal implementation of "problem2.py", what should be shown on screen maybe like below:
+       Please enter the number for requesting Fibonacci sequence from server: 103
+       Response from server:
+       0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946 17711 28657 46368 75025 121393 196418 317811 514229 832040 1346269 2178309 3524578 5702887 9227465 14930352 24157817 39088169
+        63245986 102334155 165580141 267914296 433494437 701408733 1134903170 1836311903 2971215073 4807526976 7778742049 12586269025 20365011074 32951280099 53316291173 86267571272 139583862445 225851433717       
+        365435296162 591286729879 956722026041 1548008755920 2504730781961 4052739537881 6557470319842 10610209857723 17167680177565 27777890035288 44945570212853 72723460248141 117669030460994 1903924907091
+       35 308061521170129 498454011879264 806515533049393 1304969544928657 2111485077978050 3416454622906707 5527939700884757 8944394323791464 14472334024676221 23416728348467685 37889062373143906 6130579072
+       1611591 99194853094755497 160500643816367088 259695496911122585 420196140727489673 679891637638612258 1100087778366101931 1779979416004714189 2880067194370816120 4660046610375530309 754011380474634642
+       9 12200160415121876738 19740274219868223167 31940434634990099905 51680708854858323072 83621143489848422977 135301852344706746049 218922995834555169026 354224848179261915075 573147844013817084101 92737
+       2692193078999176       
+
+III.
+    launch 1+ clients like what in II., and input number at various terminal, then check each of them will get correct response from "problem2" server.
+
+    
+The best way to test a server maybe via clients, so the unit tests and functional tests of "problem2" server have been included in the above test scenarios.
+And for further testing, we may consider of the design like below:
+1)  further customize a client to fully test "problem2" server 
+2)  further extend the multi-user test scenario in III., and doing more complex tests when thousands of clients are connected and request a Fibonacci sequence simultaneously. 

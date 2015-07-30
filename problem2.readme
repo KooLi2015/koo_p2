@@ -1,0 +1,19 @@
+"problem2" is a Web service project that accepts number n as input from client and returns the first n Fibonacci numbers(start from 0).
+For example: if a client send 5 to the problem2 server, then problem2 will return Fibonacci sequence 0 1 1 2 3 to the client.
+
+In "problem2", the server is implemented based on "eventlet"(http://eventlet.net/) which a concurrent networking library for Python.
+It is popular since it has already been integrated into OpenStack(http://www.openstack.org/), and in general, coroutine based solution 
+has proven to be more efficiency than multithreading for server-side development.
+
+Project "problem2" is based on Python 3(https://docs.python.org/3/), and mainly consist of two parts:
+I.  The program "problem2.py" is used as the main program that running at server side
+    In order to run this program, you need to install "eventlet":
+    1) To install it on Linux-like systems, please refer to https://github.com/eventlet/eventlet/blob/master/README.rst
+    2) To install it on Windows, please refer to https://pip.pypa.io/en/latest/installing.html#install-pip
+
+II. "test/problem2_client.py" is a reference implementation of the client for demoing or testing the service provided by "problem2.py"
+    
+
+For detailed info on how to run the programs above, please refer to "test/problem2_test.readme".
+Firstly, please ensure Python 3 is properly installed on your test machines both for server-side and client-side.
+
